@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/leaderBoardFragment"
+        android:icon="@drawable/baseline_leaderboard_24"
+        android:title="Leaderboard" />
+    <item
+        android:id="@+id/userProfileFragment"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="User Profile" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Settings" />
+</menu>
