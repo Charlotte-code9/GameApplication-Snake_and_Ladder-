@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayerSelectionActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="61dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_players"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/threePlayerButton"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:text="3 Players"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/twoPlayerButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/twoPlayerButton"
+        app:layout_constraintTop_toBottomOf="@+id/twoPlayerButton" />
+
+    <Button
+        android:id="@+id/twoPlayerButton"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="360dp"
+        android:text="2 Players"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fourPlayerButton"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:text="4 Players"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/threePlayerButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/threePlayerButton"
+        app:layout_constraintTop_toBottomOf="@+id/threePlayerButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
