@@ -2,6 +2,7 @@ package ph.stacktrek.novare.snakeandladder.medalla.sabellano
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,7 +46,6 @@ class GameBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game_board)
         initBoard()
 
-        // Get the player information from the intent extras
         totalPlayers = intent.getIntExtra("playerCount", 2) // Default value is 2
         playerNames = intent.getStringArrayListExtra("playerNames") ?: mutableListOf("Player 1", "Player 2")
         playerPositions = Array(totalPlayers) { 0 }
@@ -81,17 +81,18 @@ class GameBoardActivity : AppCompatActivity() {
                     val alertDialogBuilder = AlertDialog.Builder(this)
                     alertDialogBuilder.setTitle("Congratulations")
                     alertDialogBuilder.setMessage("${playerNames[currentPlayer]} wins!")
-                    alertDialogBuilder.setPositiveButton("OK",
-                        DialogInterface.OnClickListener { dialog, which -> finish() })
+                    alertDialogBuilder.setPositiveButton("Play Again",
+                        DialogInterface.OnClickListener { dialog, which ->
+                            val intent = Intent(this, HomeFragment::class.java)
+                            startActivity(intent)
+                        })
 
                     val alertDialog = alertDialogBuilder.create()
                     alertDialog.show()
 
-
                     playerPositionTextView.text = "${playerNames[currentPlayer]} wins!"
                     rollDiceButton.isEnabled = false
 
-                    // Store the winner's name in SharedPreference
                     val sharedPreferences = getSharedPreferences("winners", Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     val winnersJson = sharedPreferences.getString("winners", "[]") ?: "[]"
@@ -120,7 +121,7 @@ class GameBoardActivity : AppCompatActivity() {
     private fun updatePlayerPositionTextView(playerPositionTextView: TextView) {
         val positionsText = StringBuilder()
         for (i in 0 until totalPlayers) {
-            positionsText.append("${playerNames[i]} is on tile ${playerPositions[i]}\n")
+            positionsText.append("${playerNames[i]} position:  ${playerPositions[i]} tile\n")
         }
         playerPositionTextView.text = positionsText.toString().trimEnd()
     }
@@ -154,7 +155,6 @@ class GameBoardActivity : AppCompatActivity() {
 
                 button.text = position.toString()
 
-                // Set the button color based on the player position
                 when {
                     playerPositions.any { it == position } -> {
                         val playerIndex = playerPositions.indexOfFirst { it == position }
@@ -166,9 +166,14 @@ class GameBoardActivity : AppCompatActivity() {
                         }
                         button.setBackgroundColor(playerColor)
                     }
-                    snakes.containsKey(position) -> button.setBackgroundColor(Color.parseColor("#76a8c1"))
-                    ladders.containsKey(position) -> button.setBackgroundColor(Color.parseColor("#76a8c1"))
-                    else -> button.setBackgroundColor(Color.WHITE)
+                    else -> {
+                        val backgroundColor = if (col % 2 == 0) {
+                            Color.rgb( 124, 203, 220)
+                        } else {
+                            Color.WHITE
+                        }
+                        button.setBackgroundColor(backgroundColor)
+                    }
                 }
 
                 if (row % 2 == 0) {
